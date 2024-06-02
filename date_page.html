@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yes or No Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #add8e6; /* Light blue background */
+            font-family: 'Pacifico', cursive;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .container {
+            text-align: center;
+            position: relative; /* Make the container a reference for absolutely positioned elements */
+            width: 600px; /* Fixed width */
+            height: 400px; /* Fixed height */
+            bottom: 10%;
+        }
+
+        .message {
+            font-size: 36px;
+            color: #e754a7;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Add more space between buttons */
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .yes {
+            background-color: #4CAF50;
+            color: white;
+            position: relative;
+        }
+
+        .no {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .character {
+            width: 200px;
+            height: auto;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="message">Do you wanna go out on date with me?</div>
+        <img src="puppy_eyes.gif" alt="Character" class="character image-1">
+        <img src="heart.png" alt="Heart" class="character image-2 hide">
+        <div class="buttons">
+            <button class="yes btn-yes">Yes</button>
+            <button class="no btn-no" id="noButton">No</button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById("container");
+        const imageOne = document.querySelector(".image-1");
+        const imageTwo = document.querySelector(".image-2");
+        const btnYes = document.querySelector(".btn-yes");
+        const btnNo = document.querySelector(".btn-no");
+
+        function getRandomNumber(min, max) {
+            // Calculate the random number between min and max (inclusive)
+            const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+            return randomNumber;
+        }
+
+        function runaway(button) {
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
+
+            let newTop = Math.round(Math.random() * (containerRect.height - buttonRect.height)) - (containerRect.height / 2);
+            let newLeft = Math.round(Math.random() * (containerRect.width - buttonRect.width)) - (containerRect.width / 2);
+
+            button.style.position = 'absolute';
+            button.style.top = `${newTop}px`;
+            button.style.left = `${newLeft}px`;
+        }
+
+        btnNo.addEventListener("mouseover", (event) => {
+            runaway(btnNo);
+        });
+
+        btnYes.addEventListener("click", (e) => {
+            window.location.href = 'yayy.html'; // Navigate to the new page
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Special Invitation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0f7fa; /* Light blue background */
+            margin: 0;
+            font-family: 'Pacifico', cursive;
+            overflow: hidden;
+        }
+
+        .background-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('panda_bg.jpg') no-repeat center center;
+            background-size: contain; /* Resize background to maintain aspect ratio */
+            z-index: -1; /* Place behind other content */
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #envelope {
+            width: 150px; /* Adjusted width to fit the scene */
+            height: 100px; /* Adjusted height to fit the scene */
+            background: url('envelope.png') no-repeat center center;
+            background-size: cover;
+            position: absolute;
+            bottom: 31%;
+            left: 43%;
+            transition: transform 0.5s ease;
+        }
+
+        #envelope:hover {
+            transform: scale(1.05);
+        }
+
+        #letter {
+            display: none;
+            width: 300px; /* Adjusted width to fit the envelope */
+            height: auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: absolute;
+            bottom: 31%;
+            left: 43%;
+            transform: translate(-50%, 0%);
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+        }
+
+        .show-letter #envelope {
+            animation: flyAway 1s ease-in-out forwards;
+        }
+
+        .show-letter #letter {
+            display: block;
+            animation: slideIn 1s ease-in-out forwards;
+            opacity: 1;
+        }
+
+        @keyframes flyAway {
+            to {
+                transform: translateY(-300px) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translate(-50%, 100%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0%);
+                opacity: 1;
+            }
+        }
+
+        #heart {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+
+        #message {
+            position: absolute;
+            top: 25px;
+            font-family: 'Pacifico', cursive;
+            font-size: 48px;
+            color: pink;
+            text-align: center;
+            transform: rotate(-10deg);
+            animation: float 2s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: rotate(-10deg) translateY(0);
+            }
+            50% {
+                transform: rotate(-10deg) translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container"></div>
+    <div class="container" id="envelopeContainer">
+        <div id="envelope"></div>
+        <img id="letter" src="letter.png" alt="Letter"> <!-- Display the letter image -->
+    </div>
+    <div id="message">Click on the envelope</div>
+    <img id="heart" src="heart.png" alt="Heart"> <!-- Add heart image -->
+    <script>
+        document.getElementById('envelopeContainer').addEventListener('click', function() {
+            this.classList.toggle('show-letter');
+        });
+
+        document.getElementById('heart').addEventListener('click', function() {
+            window.location.href = 'date_page.html'; // Redirect to a different web page
+        });
+    </script>
+</body>
+</html>
